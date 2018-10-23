@@ -1,41 +1,84 @@
 'use strict';
 
-// arguments object - no longer bound with arrow functions
+console.log('App.js is running!');
 
-var add = function add(a, b) {
-    return a + b;
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
 };
 
-console.log(add(55, 1, 1000, 32));
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'Item one'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'Item two'
+        )
+    )
+);
 
-// this keyword - no longer bound
-
-var user = {
-    name: 'Andrew',
-    cities: ['Philadelphia', 'New York', 'Dublin'],
-    printPlacedLived: function printPlacedLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
+};
+var minusOne = function minusOne() {
+    console.log('minusOne');
+};
+var reset = function reset() {
+    console.log('reset');
 };
 
-console.log(user.printPlacedLived());
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Count: ',
+        count
+    ),
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        '+1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'Reset'
+    )
+);
 
-// Challenge area
+var appRoot = document.getElementById('app');
 
-var multiplier = {
-    numbers: [23, 1, 14, 30],
-    multiplyBy: 10,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this2.multiplyBy;
-        });
-    }
-};
-
-console.log(multiplier.multiply());
+ReactDOM.render(templateTwo, appRoot);
