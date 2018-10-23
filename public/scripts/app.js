@@ -1,81 +1,41 @@
 'use strict';
 
-console.log('App.js is running!');
+// arguments object - no longer bound with arrow functions
 
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
+var add = function add(a, b) {
+    return a + b;
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'Here are your options' : 'No options'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-);
+console.log(add(55, 1, 1000, 32));
+
+// this keyword - no longer bound
 
 var user = {
-    name: 'Mike',
-    age: 26,
-    location: 'Philadelphia'
+    name: 'Andrew',
+    cities: ['Philadelphia', 'New York', 'Dublin'],
+    printPlacedLived: function printPlacedLived() {
+        var _this = this;
+
+        return this.cities.map(function (city) {
+            return _this.name + ' has lived in ' + city;
+        });
+    }
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
+console.log(user.printPlacedLived());
+
+// Challenge area
+
+var multiplier = {
+    numbers: [23, 1, 14, 30],
+    multiplyBy: 10,
+    multiply: function multiply() {
+        var _this2 = this;
+
+        return this.numbers.map(function (num) {
+            return num * _this2.multiplyBy;
+        });
     }
-}
+};
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+console.log(multiplier.multiply());
