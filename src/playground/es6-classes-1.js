@@ -61,7 +61,7 @@ console.log(other.hasMajor())
 console.log(other.getDescription())
 
 
-const thatGuy = new Traveler('Laurie Palmer', 23, 'Singapour')
+const thatGuy = new Traveler(undefined, undefined, 'Singapour')
 console.log(thatGuy.getGreeting());
 
 
