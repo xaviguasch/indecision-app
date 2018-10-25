@@ -28,8 +28,9 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-    handlePick() {
+    handlePick() {        
         alert('handlePick is working')
+
     }
     render() {
         return (
