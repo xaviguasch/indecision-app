@@ -7,19 +7,38 @@ import Options from './Options'
 
 
 export default class IndecisionApp extends React.Component {
-    constructor(props) {
-        super(props)
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
-        this.handlePick = this.handlePick.bind(this)
-        this.handleAddOption = this.handleAddOption.bind(this)
-        this.handleDeleteOption = this.handleDeleteOption.bind(this)
-        this.state = {
-            options: []
-        }
+    state = {
+        options: []
     }
-    handleDeleteOptions() {
+
+    handleDeleteOptions = () => {
         this.setState(() => ({ options: [] }))
     }
+    //It deletes a SINGULAR option
+    handleDeleteOption = (optionToRemove) => {   
+        this.setState((prevState) => ({ 
+            options: prevState.options.filter((option) => optionToRemove !== option ) 
+            // deletes the item and returns an array with all the other ones
+            }))
+    }
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length)
+        const option = this.state.options[randomNum]        
+        alert(option)
+    }
+    handleAddOption = (option) => {
+        if (!option) { // checks if there's an empty string
+            return 'Enter valid valid value to add item'
+        } else if (this.state.options.indexOf(option) > - 1) {
+            return 'This option already exists'
+        } 
+
+        // You're getting a new array, not chaning the original
+        this.setState((prevState) => ({ 
+            options: prevState.options.concat(option) 
+        }))
+    }
+
     componentDidMount() {
         
         try {
@@ -42,34 +61,6 @@ export default class IndecisionApp extends React.Component {
     componentWillUnmount() {
         console.log('componentWillUnmount !!!'); 
     }
-
-
-
-    //It deletes a SINGULAR option
-    handleDeleteOption(optionToRemove) {   
-        this.setState((prevState) => ({ 
-            options: prevState.options.filter((option) => optionToRemove !== option ) 
-            // deletes the item and returns an array with all the other ones
-            }))
-    }
-    handlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length)
-        const option = this.state.options[randomNum]        
-        alert(option)
-    }
-    handleAddOption(option) {
-        if (!option) { // checks if there's an empty string
-            return 'Enter valid valid value to add item'
-        } else if (this.state.options.indexOf(option) > - 1) {
-            return 'This option already exists'
-        } 
-
-        // You're getting a new array, not chaning the original
-        this.setState((prevState) => ({ 
-            options: prevState.options.concat(option) 
-        }))
-    }
-
 
     render() {
         const subtitle = 'Put your life in the hands of a computer !!!'

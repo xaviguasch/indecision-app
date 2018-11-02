@@ -1,14 +1,10 @@
 import React from 'react'
 
 export default class AddOption extends React.Component {
-    constructor(props) {
-        super(props)
-        this.formHandleAddOption = this.formHandleAddOption.bind(this)  // NAME CHANGED TO AVOID CONFUSION
-        this.state = {
-            error: undefined
-        }
+    state = {
+        error: undefined
     }
-    formHandleAddOption(e) {
+    formHandleAddOption = (e) => {
         e.preventDefault()
         
 
