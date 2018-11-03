@@ -15,6 +15,11 @@
     opacity: .5;
 }
 
+.big-button:hover {
+    background: darken($purple, 5%);
+    border-bottom: .6rem solid darken($purple, 15%);
+}
+
 
 // Button
 .button {
@@ -32,4 +37,8 @@
     padding: 0;
 }
 
+.button:hover {
+    background: darken($purple, 5%);
+    border-bottom: .3rem solid darken($purple, 15%);
+}
 
