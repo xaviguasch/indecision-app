@@ -19,7 +19,7 @@ const onFormSubmit = (e) => {
         e.target.elements.option.value = ''    // wipes out the input to an empty string
         renderApp()
     }
-}
+};
 
 const onRemoveAll = () => {
     app.options = []
